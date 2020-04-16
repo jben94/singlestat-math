@@ -499,6 +499,10 @@ class SingleStatMathCtrl extends MetricsPanelCtrl {
     var $panelContainer = elem.find('.panel-container');
     elem = elem.find('.singlestatmath-panel');
 
+    function getPanelContainer() {
+      return elem.closest('.panel-container');
+    }
+
     function applyColoringThresholds(value, valueString) {
       if (!panel.colorValue) {
         return valueString;
@@ -719,6 +723,7 @@ class SingleStatMathCtrl extends MetricsPanelCtrl {
         }
         if (color) {
           $panelContainer.css('background-color', color);
+          getPanelContainer().css('color', '#d8d9da');
           if (scope.fullscreen) {
             elem.css('background-color', color);
           } else {
@@ -727,6 +732,7 @@ class SingleStatMathCtrl extends MetricsPanelCtrl {
         }
       } else {
         $panelContainer.css('background-color', '');
+        getPanelContainer().css('color', '#52545c');
         elem.css('background-color', '');
         panel.circleBackground = false;
       }
