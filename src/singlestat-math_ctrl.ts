@@ -722,6 +722,7 @@ class SingleStatMathCtrl extends MetricsPanelCtrl {
         }
         if (color) {
           getPanelContainer().css('background-color', color);
+          getPanelContainer().css('color', '#d8d9da');
           if (scope.fullscreen) {
             elem.css('background-color', color);
           } else {
@@ -730,10 +731,10 @@ class SingleStatMathCtrl extends MetricsPanelCtrl {
         }
       } else {
         getPanelContainer().css('background-color', '');
+        getPanelContainer().css('color', 'inherit');
         elem.css('background-color', '');
         panel.circleBackground = false;
       }
-      
       // Convert to Circle
       if (panel.circleBackground) {
         $(getPanelContainer()).addClass('circle');
