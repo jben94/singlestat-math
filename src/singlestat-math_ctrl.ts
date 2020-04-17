@@ -722,7 +722,7 @@ class SingleStatMathCtrl extends MetricsPanelCtrl {
           color = getColorForValue(panel.thresholds, data.value);
         }
         if (color) {
-          $panelContainer.css('background-color', color);
+          getPanelContainer().css('background-color', color);
           getPanelContainer().css('color', '#d8d9da');
           if (scope.fullscreen) {
             elem.css('background-color', color);
@@ -731,8 +731,8 @@ class SingleStatMathCtrl extends MetricsPanelCtrl {
           }
         }
       } else {
-        $panelContainer.css('background-color', '');
-        getPanelContainer().css('color', '#52545c');
+        getPanelContainer().css('background-color', '');
+        getPanelContainer().css('color', 'inherit');
         elem.css('background-color', '');
         panel.circleBackground = false;
       }
@@ -752,12 +752,12 @@ class SingleStatMathCtrl extends MetricsPanelCtrl {
             'background-color': color
           });
         } else {
-          elem.css({
-            'border-radius': 50 + '%',
+        elem.css({
+          'border-radius': 50 + '%',
             'width': circleWidth + 'px',
             'height': circleWidth + 'px',
-            'background-color': color
-          });
+          'background-color': color
+        });
         }
       } else {
         $($panelContainer.removeClass('circle'));
