@@ -15,6 +15,8 @@ import TimeSeries from 'app/core/time_series2';
 import { MetricsPanelCtrl, PanelCtrl } from 'app/plugins/sdk';
 //import { strict } from 'assert';
 
+const BASE_FONT_SIZE = 38;
+
 class SingleStatMathCtrl extends MetricsPanelCtrl {
   static templateUrl = 'public/plugins/blackmirror1-singlestat-math-panel/module.html';
 
@@ -520,9 +522,10 @@ class SingleStatMathCtrl extends MetricsPanelCtrl {
       return valueString;
     }
 
-    function getSpan(className, fontSize, value) {
+    function getSpan(className, fontSizePercent, value) {
       value = templateSrv.replace(value, data.scopedVars);
-      return '<span class="' + className + '" style="font-size:' + fontSize + '">' + value + '</span>';
+      const pixelSize = (parseInt(fontSizePercent, 10) / 100) * BASE_FONT_SIZE;
+      return '<span class="' + className + '" style="font-size:' + pixelSize + 'px">' + value + '</span>';
     }
 
     function getBigValueHtml() {
@@ -769,14 +772,7 @@ class SingleStatMathCtrl extends MetricsPanelCtrl {
 
     function hookupDrilldownLinkTooltip() {
       // drilldown link tooltip
-
-      if (ctrl.panel.description) {
-        var drilldownTooltip = $('<div id="tooltip" class="" style="background:white;margin:auto;color:black;width:200px;box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);"><h6 style="color:black;">' 
-      + ctrl.panel.title + '</h6>' + ctrl.panel.description + '</div>"');
-      } else {
-        var drilldownTooltip = $('<div id="tooltip" class="" style="background:white;margin:auto;color:black;width:200px;box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);"><h6 style="color:black;">' 
-      + ctrl.panel.title + '</h6>No Description</div>"');
-      }
+      const drilldownTooltip = $('<div id="tooltip" class="">hello</div>"');
 
       elem.mouseleave(function() {
         $timeout(function() {
@@ -814,9 +810,7 @@ class SingleStatMathCtrl extends MetricsPanelCtrl {
           return;
         }
 
-        //drilldownTooltip.text(data.valueFormatted);
-        //drilldownTooltip.text('click to go to: ' + linkInfo.title);
-        //drilldownTooltip.text(ctrl.panel.description);
+        drilldownTooltip.text('Click to go to: ' + linkInfo.title);
         drilldownTooltip.place_tt(e.pageX, e.pageY - 50);
       });
     }
